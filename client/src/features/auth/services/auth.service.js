@@ -9,3 +9,8 @@ export const loginService = async(formData)=>{
     const res = await API.post('/auth/login', formData);
     return res.data;
 };
+
+export const getMeService = async() =>{
+    const res = await API.get('/auth/me');
+    return res.data;
+}

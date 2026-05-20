@@ -1,8 +1,10 @@
-import {createBrowserRouter, Navigate} from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router';
 import Home from '../features/others/Home';
 import Login from '../features/auth/components/Login';
 import Register from '../features/auth/components/Register';
 import Authlayout from '../layout/Authlayout';
+import PublicRoute from '../guards/PublicRoute';
+import ProtectedRoute from '../guards/ProtectedRoute';
 
 const Router = createBrowserRouter([
     {
@@ -11,22 +13,28 @@ const Router = createBrowserRouter([
     },
     {
         path: '/login',
-        element: 
-        <Authlayout mode="login">
-            <Login />
-        </Authlayout>
+        element:
+            <PublicRoute>
+                <Authlayout mode="login">
+                    <Login />
+                </Authlayout>
+            </PublicRoute>
     },
     {
         path: "/register",
-        element: 
-        <Authlayout mode="register">
-            <Register />
-        </Authlayout>
+        element:
+            <PublicRoute>
+                <Authlayout mode="register">
+                    <Register />
+                </Authlayout>
+            </PublicRoute>
     },
     {
         path: '/home',
-        element: 
-        <Home />
+        element:
+            <ProtectedRoute>
+                <Home />
+            </ProtectedRoute>
     }
 ]);
 

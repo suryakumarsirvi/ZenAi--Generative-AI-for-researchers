@@ -46,10 +46,7 @@ const Authlayout = ({ mode: initialMode }) => {
     e.preventDefault();
 
     if (!formData) return;
-    console.log("start")
-
     const res = await handleLogin(formData);
-    console.log("last")
 
     setFormData({
       fullname: "",

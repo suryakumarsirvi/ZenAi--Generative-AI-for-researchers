@@ -117,3 +117,29 @@ export const login = async (req, res) => {
     });
 };
 
+export const getMe = async (req, res) => {
+    try {
+        const user = req.user;
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized"
+            })
+        }
+
+        const data = await User.findById(user._id);
+
+        return res.status(200).json({
+            success: true,
+            message: "User fetched successfully",
+            data: data
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Error fetching user",
+            error: error.message
+        })
+    }
+}
